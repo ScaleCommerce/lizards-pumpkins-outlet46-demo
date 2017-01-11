@@ -120,7 +120,7 @@ define(['lib/ajax', 'lib/translate'], function (callAjax, translate) {
             searchResultImage = document.createElement('IMG');
 
         searchResultRowLink.href = window.baseUrl + productData.attributes.url_key;
-        searchResultImage.src = productData.images['search-autosuggestion'][0]['url'];
+        searchResultImage.src = productData.attributes['image'][0].replace(/1800x1600/i, '250x250');
 
         searchResultRowLink.appendChild(searchResultImage);
         searchResultRowLink.appendChild(document.createTextNode(productData.attributes.name));

@@ -155,3 +155,8 @@ header.pushed { top: 0 }
     .span_5, .span_7 { width: 100%; float: none }
     .zoom img { max-width: 100% }
 }
+
+#livesearch_result img {
+    max-width:45px;
+    max-height:45px;
+}
