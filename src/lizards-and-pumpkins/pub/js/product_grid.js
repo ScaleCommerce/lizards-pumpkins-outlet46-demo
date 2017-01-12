@@ -45,7 +45,7 @@ define(['product'], function (Product) {
         productLi.className = 'col-lg-3 center itemBox tileView onHover';
 
         title.textContent = product.getAttributeValue('name');
-        container.setAttribute('href',baseUrl + product.getAttributeValue('url_key'));
+        title.setAttribute('href',baseUrl + product.getAttributeValue('url_key'));
 
         container.appendChild(productImage);
         container.appendChild(title);
