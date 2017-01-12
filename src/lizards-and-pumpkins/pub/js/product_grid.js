@@ -39,15 +39,12 @@ define(['product'], function (Product) {
         var product = new Product(productSourceData),
             mainImage = product.getMainImage(),
             productLi = document.createElement('LI'),
-            container = document.createElement('DIV'),
-            title = document.createElement('A'),
-            productImage = createProductImage(mainImage['url'], mainImage['label']);
-        productLi.className = 'col-lg-3 center itemBox tileView onHover';
+            container = document.createElement('A'),
+            title = document.createElement('H2'),
+            productImage = createProductImage(mainImage, '');
 
         title.textContent = product.getAttributeValue('name');
-        title.href = baseUrl + product.getAttributeValue('url_key');
-        title.className = "name block text-left";
-        container.className = "itemBoxInner";
+        container.href = baseUrl + product.getAttributeValue('url_key');
 
         container.appendChild(productImage);
         container.appendChild(title);
@@ -73,7 +70,7 @@ define(['product'], function (Product) {
             }
 
             var grid = document.createElement('UL');
-            grid.className = 'products-grid row categoryDetails isGridView';
+            grid.className = 'products-grid';
 
             placeholder.appendChild(grid);
 
