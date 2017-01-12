@@ -22,3 +22,8 @@
 
 /* Clearer */
 .toolbar:after { content: ""; display: block; height: 0; clear: both; visibility: hidden }
+
+#livesearch_result img {
+    max-width:45px;
+    max-height:45px;
+}
