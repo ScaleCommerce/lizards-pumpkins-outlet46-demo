@@ -35,9 +35,9 @@ class PlentyCsv2LizardsXml
          xsi:schemaLocation="http://lizardsandpumpkins.com ../../schema/catalog.xsd">
     <products>
 EOXML_START;
-        while (! feof($this->handle)) {
+        for ($i = 0; ! feof($this->handle); $i++) {
             if ($row = fgetcsv($this->handle, null, ';')) {
-                echo $this->buildProductXml($row);
+                echo $this->buildProductXml($row, $i);
             }
         }
         echo "    </products>\n";
@@ -48,13 +48,21 @@ EOXML_START;
         }
         
         echo <<<EOXML_END
+        <listing url_key="" website="de" locale="de_DE">
+            <criteria type="and">
+                <attribute name="category" is="Equal">startseite</attribute>
+            </criteria>
+            <attributes>
+                <attribute name="meta_title">Startseite</attribute>
+            </attributes>
+        </listing>
     </listings>
 </catalog>
 EOXML_END;
 
     }
 
-    private function buildProductXml(array $row)
+    private function buildProductXml(array $row, int $count)
     {
         if (! isset($row[0]) || ! $row[0]) {
             return '';
@@ -89,6 +97,9 @@ EOXML_END;
         $this->writeAttribute($xml, 'url_key', $this->get_path_from_url($row[9]), ['website' => 'de']);
         $this->writeAttribute($xml, 'category', $row[11]);
         $this->writeAttribute($xml, 'category', $row[12]);
+        if ($count < 4) {
+            $this->writeAttribute($xml, 'category', 'startseite');
+        }
         $this->categories[$row[11]] = true;
         if (isset($row[10])) {
             foreach (explode(',', $row[10]) as $image) {
