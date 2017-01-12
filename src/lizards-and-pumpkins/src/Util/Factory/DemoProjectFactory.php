@@ -557,8 +557,8 @@ class DemoProjectFactory implements Factory, MessageQueueFactory, FactoryWithCal
     public function getProductsPerPageConfig() : ProductsPerPage
     {
         if (null === $this->memoizedProductsPerPageConfig) {
-            $numbersOfProductsPerPage = [60, 120];
-            $selectedNumberOfProductsPerPage = 60;
+            $numbersOfProductsPerPage = [2, 20, 40, 60];
+            $selectedNumberOfProductsPerPage = 40;
 
             $this->memoizedProductsPerPageConfig = ProductsPerPage::create(
                 $numbersOfProductsPerPage,

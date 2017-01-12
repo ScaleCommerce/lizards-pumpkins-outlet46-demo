@@ -5,7 +5,7 @@ require(
         var tabletWidth = 768,
             selectBoxIdPrefix = 'variation_',
             currentImage = document.createElement('IMG'),
-            addToCartButton = document.createElement('BUTTON'),
+            addToCartButton = document.createElement('A'),
             selectedProductId,
             product,
             currentGalleryImageIndex = 1,
@@ -26,6 +26,7 @@ require(
             var container = document.createElement('DIV');
             container.className = 'product-view';
 
+            container.appendChild(createTitle());
             container.appendChild(createGallery());
             container.appendChild(createEssentials());
             container.appendChild(createDescription());
@@ -90,46 +91,78 @@ require(
             return thumbnails;
         }
 
+        function createTitle(){
+            var title = document.createElement('H1');
+
+            title.className = "itemTitle";
+
+            title.textContent = product.getAttributeValue('name');
+
+            return title;
+        }
+
+        function createVatInfo() {
+            var vatInfo = document.createElement('P');
+            vatInfo.textContent = 'inkl. 19 % MwSt. zzgl. Versandkosten &amp; Lieferfrist (innerhalb Deutschlands kostenfrei)';
+            vatInfo.className = 'articleVat';
+
+            return vatInfo;
+        }
+
+        function toBasketWrapper() {
+
+            var toBasketWrapper = document.createElement('DIV');
+
+            toBasketWrapper.className = 'toBasketWrapper';
+
+            toBasketWrapper.appendChild(addToCartButton);
+
+            return toBasketWrapper;
+        }
+
         function createEssentials() {
             var essentials = document.createElement('DIV'),
-                title = document.createElement('H1'),
                 shortDescription = document.createElement('DIV');
 
             essentials.className = 'product-shop col span_7';
 
-            title.textContent = product.getAttributeValue('name');
 
             shortDescription.className = 'short-description';
             shortDescription.textContent = product.getAttributeValue('short_description');
 
             initializeAddToCartButton();
 
-            essentials.appendChild(title);
             essentials.appendChild(shortDescription);
-            essentials.appendChild(createControls());
             essentials.appendChild(createPrices());
-            essentials.appendChild(addToCartButton);
+            essentials.appendChild(createVatInfo());
+            essentials.appendChild(createControls());
+            essentials.appendChild(toBasketWrapper());
 
             return essentials;
         }
 
         function createPrices() {
             var priceContainer = document.createElement('DIV'),
-                regularPrice = document.createElement('DIV'),
-                oldPrice = document.createElement('DIV');
+                regularPrice = document.createElement('SPAN'),
+                oldPrice = document.createElement('SPAN'),
+                saving = document.createElement('SPAN');
 
-            regularPrice.className = 'regular-price';
+            regularPrice.className = 'regular-price price';
             regularPrice.textContent = product.getFinalPrice();
 
-            if (product.hasSpecialPrice()) {
-                oldPrice.className = 'old-price';
-                oldPrice.textContent = product.getPrice();
-                regularPrice.className += ' special-price';
-                priceContainer.appendChild(oldPrice);
-            }
-
-            priceContainer.className = 'price-box';
+            priceContainer.className = 'offerDetailsBox';
             priceContainer.appendChild(regularPrice);
+
+            if (product.hasSpecialPrice()) {
+                oldPrice.className = 'old-price priceRrp';
+                oldPrice.textContent = 'statt UVP: '+product.getPrice()+'*';
+                regularPrice.className += ' special-price price';
+                priceContainer.appendChild(oldPrice);
+
+                saving.textContent =  product.getDiscountPercentage() + '% sparen!';
+                saving.className = "m-large margin-left-2 red";
+                priceContainer.appendChild(saving);
+            }
 
             return priceContainer;
         }
@@ -142,7 +175,8 @@ require(
         }
 
         function initializeAddToCartButton() {
-            addToCartButton.appendChild(document.createTextNode(translate('Add to Cart')));
+            addToCartButton.appendChild(document.createTextNode(translate('In die Einkaufstasche')));
+            addToCartButton.className = 'PlentyWebshopButton add_basket_ajax';
             addToCartButton.disabled = true;
             addToCartButton.addEventListener('click', function () {
                 var qty = document.getElementById(selectBoxIdPrefix + 'qty').value;

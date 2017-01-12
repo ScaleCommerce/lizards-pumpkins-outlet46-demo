@@ -1,13 +1,14 @@
 define(['lib/ajax', 'lib/translate'], function (callAjax, translate) {
-    var autosuggestionBox = document.getElementById('search-autosuggestion'),
-        searchInput = document.getElementById('search'),
+    var autosuggestionBox = document.getElementById('livesearch_result'),
+        searchInput = document.getElementById('LiveSearchParam'),
         minimalLength = 2;
 
     searchInput.addEventListener('input', function () {
-        searchInput.parentNode.querySelector('button').disabled = searchInput.value.length === 0;
+        //searchInput.parentNode.querySelector('button').disabled = searchInput.value.length === 0;
 
         if (searchInput.value.length < minimalLength) {
             autosuggestionBox.innerHTML = '';
+            autosuggestionBox.style.display = 'none';
             return;
         }
 
@@ -97,6 +98,7 @@ define(['lib/ajax', 'lib/translate'], function (callAjax, translate) {
         }
 
         autosuggestionBox.innerHTML = '';
+        autosuggestionBox.style.display = 'block';
         autosuggestionBox.appendChild(resultsList);
     }
 

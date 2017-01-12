@@ -34,3 +34,8 @@
 @media (max-width: 767px) {
     .product-view { padding: 0 5px }
 }
+
+
+.itemTitle {
+    text-align:center;
+}

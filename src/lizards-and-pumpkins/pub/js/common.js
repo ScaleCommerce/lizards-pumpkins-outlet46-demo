@@ -7,10 +7,10 @@ define(
         domReady(function () {
             processAccountMeta();
             processCartMeta();
-            addMobileSearchEventListeners();
-            addMobileMenuEventListeners();
-            addLanguageSwitchEventListeners();
-            addHeaderHidingOnPageScrolling();
+            //addMobileSearchEventListeners();
+            //addMobileMenuEventListeners();
+            //addLanguageSwitchEventListeners();
+            //addHeaderHidingOnPageScrolling();
         });
 
         function processAccountMeta() {

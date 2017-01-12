@@ -50,20 +50,37 @@ define(['lib/url', 'pagination', 'lib/translate'], function (url, pagination, tr
                     filterNavigationJson[filterCode]
                 );
 
+                var filterblock1 = document.createElement('DIV');
+                filterblock1.className = 'col-lg-3';
+
+                var filterblock = document.createElement('DIV');
+                filterblock.className = 'facet-box transition';
+
                 var heading = document.createElement('DIV');
-                heading.className = 'filter-title';
+                heading.className = 'filterLabel';
                 heading.textContent = translate(filterCode);
 
-                var filterContainer = document.createElement('DIV');
-                filterContainer.className = 'filter-container';
+                heading.addEventListener('click', function () {
+                    if (filterNavigation.className.match(/\bopen\b/)) {
+                        filterNavigation.className = filterNavigation.className.replace(/\bopen\b/, ' ');
+                        return;
+                    }
 
-                var optionList = document.createElement('OL');
-                optionList.className = 'filter-content filter-' + filterCode;
+                    filterNavigation.className += ' open';
+                });
+
+                var filterContainer = document.createElement('DIV');
+                filterContainer.className = 'facetContentBox';
+
+                var optionList = document.createElement('UL');
+                optionList.className = 'facetContentList filter-' + filterCode;
                 options.map(function (option) { optionList.appendChild(option) });
 
-                filterNavigation.appendChild(heading);
+                filterNavigation.appendChild(filterblock1);
+                filterblock1.appendChild(filterblock);
+                filterblock.appendChild(heading);
                 filterContainer.appendChild(optionList);
-                filterNavigation.appendChild(filterContainer);
+                filterblock.appendChild(filterContainer);
 
                 scrollFirstSelectedFilterOptionsIntoView(filterContainer);
             });
