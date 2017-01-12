@@ -38,7 +38,7 @@ require(
         }
 
         function createGallery() {
-            currentImage.src = product.getImageUrlByNumber('large', 1);
+            currentImage.src = product.getImageUrlByNumber('large', 1).replace(/1800x1600/i, '560x560');
             currentImage.addEventListener('touchstart', handleTouchStart, false);
             currentImage.addEventListener('touchmove', handleTouchMove, false);
 
@@ -72,8 +72,8 @@ require(
                     thumbnailImage = document.createElement('IMG');
 
                 thumbnailLink.href = product.getImageUrlByNumber('original', i);
-                thumbnailLink.setAttribute('data-image', product.getImageUrlByNumber('large', i));
-                thumbnailImage.src = product.getImageUrlByNumber('small', i);
+                thumbnailLink.setAttribute('data-image', product.getImageUrlByNumber('large', i).replace(/1800x1600/i, '560x560'));
+                thumbnailImage.src = product.getImageUrlByNumber('small', i).replace(/1800x1600/i, '250x250');
 
                 thumbnailLink.addEventListener('click', function (event) {
                     event.preventDefault();
