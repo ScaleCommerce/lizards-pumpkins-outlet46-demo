@@ -39,9 +39,10 @@ define(['product'], function (Product) {
         var product = new Product(productSourceData),
             mainImage = product.getMainImage(),
             productLi = document.createElement('LI'),
-            container = document.createElement('A'),
-            title = document.createElement('H2'),
-            productImage = createProductImage(mainImage, '');
+            container = document.createElement('DIV'),
+            title = document.createElement('A'),
+            productImage = createProductImage(mainImage,'');
+        productLi.className = 'col-lg-3 center itemBox tileView onHover';
 
         title.textContent = product.getAttributeValue('name');
         container.href = baseUrl + product.getAttributeValue('url_key');

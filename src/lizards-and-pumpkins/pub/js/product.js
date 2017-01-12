@@ -28,7 +28,6 @@ define(function () {
 
         this.getMainImage = function () {
             return product['attributes']['image'][0];
-            //return product['images']['medium'][0];
         };
 
         this.hasSpecialPrice = function () {
@@ -82,22 +81,17 @@ define(function () {
         };
 
         this.getImageUrlByNumber = function (size, number) {
-            if (typeof product['attributes']['image'][number -1] === 'undefined') {
+            if (typeof product['attributes']['image'] === 'undefined' ||
+                typeof product['attributes']['image'][number - 1] === 'undefined'
+            ) {
                 return null;
             }
-            return product['attributes']['image'][number -1];
-            // if (typeof product['images'][size] === 'undefined' ||
-            //     typeof product['images'][size][number - 1] === 'undefined'
-            // ) {
-            //     return null;
-            // }
-            //
-            // return product['images'][size][number - 1]['url'];
+
+            return product['attributes']['image'][number - 1];
         };
 
         this.getNumberOfImages = function () {
             return product['attributes']['image'].length;
-            //return product['images']['original'].length;
         };
 
         this.getFinalPrice = function () {
