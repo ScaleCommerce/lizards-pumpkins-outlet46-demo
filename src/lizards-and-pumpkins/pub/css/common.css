@@ -1,11 +1,17 @@
-@import url(//fonts.googleapis.com/css?family=Montserrat:400,700);
+/*@import url(//fonts.googleapis.com/css?family=Ubuntu:400,700);*/
 
-body { font-size: 15px; font-family: 'Montserrat', sans-serif; color: #333333; margin: 0; position: relative }
+@font-face {
+    font-family: 'fontello';
+    src: url(fonts/glyphicons-halflings-regular.woff);
+    src: url(fonts/glyphicons-halflings-regular.ttf);
+}
+
+body { font-size: 12px; font-family: 'Ubuntu', sans-serif; color: #333333; margin: 0; position: relative }
 #page { background: #fafafa; position: relative }
 
-input, textarea { padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif }
+input, textarea { padding: 10px 15px; font-size: 14px; font-family: 'Ubuntu', sans-serif }
 fieldset { border: 0; padding: 0; margin: 0 }
-button { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 14px }
+button { display: inline-block; font-family: 'Ubuntu', sans-serif; font-size: 14px }
 input, textarea, button { outline: none; border: none; background: none; margin: 0 }
 a { color: #333333; text-decoration: none }
 a:hover { color: #87BBA2 }
@@ -74,7 +80,7 @@ header nav { padding: 0 50px }
 .span_7 { width: 58.33333%; border-left-width: 5px; padding: 0; margin-left: 0 }
 .span_10 { width: 83.33333%; border-left-width: 5px; padding: 0; margin-left: 0 }
 
-#content { width: 100%; overflow: hidden; min-height: 700px; padding-top: 160px; max-width: 1600px; margin: 0 auto }
+#content { width: 100%; overflow: hidden; min-height: 700px; max-width: 1600px; margin: 0 auto }
 #content.pushed { margin-top: 145px; }
 header.pushed { top: 0 }
 

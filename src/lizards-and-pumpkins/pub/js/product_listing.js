@@ -3,8 +3,8 @@ require(
     function (domReady, productGrid, filterNavigation, pagination, url, translate) {
 
         domReady(function () {
+            filterNavigation.renderLayeredNavigation(filterNavigationJson, '#facet-box-layer');
             renderContent();
-            filterNavigation.renderLayeredNavigation(filterNavigationJson, '#filter-navigation');
         });
 
         function renderContent() {
@@ -17,7 +17,6 @@ require(
 
             container.appendChild(createToolbar());
             productGrid.renderGrid(productListingJson, container);
-            container.appendChild(pagination.renderPagination(totalNumberOfResults, productsPerPage));
         }
 
         function createEmptyListingBlock() {
@@ -79,9 +78,10 @@ require(
         function createToolbar() {
             var toolbar = document.createElement('DIV');
             toolbar.className = 'toolbar';
-            toolbar.appendChild(createTotalProductsNumberBlock());
+            //toolbar.appendChild(createTotalProductsNumberBlock());
             toolbar.appendChild(createSortingBlock());
             toolbar.appendChild(createProductsPerPageBlock());
+            toolbar.appendChild(pagination.renderPagination(totalNumberOfResults, productsPerPage));
 
             return toolbar;
         }

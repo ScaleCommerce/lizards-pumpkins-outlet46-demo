@@ -1,0 +1,24 @@
+/* Search autosuggestion */
+#livesearch_result { position: absolute; z-index: 10; width: 100% }
+#livesearch_result ul { list-style: none; margin: 0; padding: 0; text-align: left; border: #000000 solid 2px; border-top: none; background-color: #ffffff }
+#livesearch_result li a { display: block }
+#livesearch_result li.selected { background-color: #dddddd }
+#livesearch_result li img { vertical-align: middle }
+#livesearch_result li.no-thumbnail { padding: 10px; text-align: center }
+
+.toolbar {
+    border-top: #ddd 1px solid;
+    border-bottom: #ddd 1px solid;
+    padding:15px 0;
+}
+
+#pagination {
+    float:right;
+}
+.limiter,
+.sort-by {
+    float:left;
+}
+
+/* Clearer */
+.toolbar:after { content: ""; display: block; height: 0; clear: both; visibility: hidden }
