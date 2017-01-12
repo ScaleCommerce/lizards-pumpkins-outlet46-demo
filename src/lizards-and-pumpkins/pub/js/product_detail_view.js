@@ -158,7 +158,8 @@ require(
             title.textContent = translate('Details');
 
             container.appendChild(title);
-            container.appendChild(document.createTextNode(product.getAttributeValue('description')));
+            container.innerHTML += product.getAttributeValue('description');
+            //container.appendChild(document.createTextNode(product.getAttributeValue('description')));
 
             return container;
         }

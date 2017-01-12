@@ -16,8 +16,8 @@ class DemoProjectContextSource extends ContextSource
     {
         return [
             [Website::CONTEXT_CODE => 'de', Locale::CONTEXT_CODE => 'de_DE'],
-            [Website::CONTEXT_CODE => 'en', Locale::CONTEXT_CODE => 'en_US'],
-            [Website::CONTEXT_CODE => 'fr', Locale::CONTEXT_CODE => 'fr_FR'],
+//            [Website::CONTEXT_CODE => 'en', Locale::CONTEXT_CODE => 'en_US'],
+//            [Website::CONTEXT_CODE => 'fr', Locale::CONTEXT_CODE => 'fr_FR'],
         ];
     }
 }

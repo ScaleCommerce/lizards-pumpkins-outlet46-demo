@@ -30,9 +30,12 @@ use LizardsAndPumpkins\DataPool\SearchEngine\Query\SortBy;
 use LizardsAndPumpkins\DataPool\SearchEngine\Query\SortDirection;
 use LizardsAndPumpkins\DataPool\SearchEngine\SearchCriteria\CompositeSearchCriterion;
 use LizardsAndPumpkins\DataPool\SearchEngine\SearchCriteria\SearchCriteria;
+use LizardsAndPumpkins\DataPool\SearchEngine\SearchCriteria\SearchCriterionAnything;
 use LizardsAndPumpkins\DataPool\SearchEngine\SearchCriteria\SearchCriterionEqual;
 use LizardsAndPumpkins\DataPool\SearchEngine\SearchCriteria\SearchCriterionGreaterThan;
 use LizardsAndPumpkins\DataPool\SearchEngine\SearchEngine;
+use LizardsAndPumpkins\DataPool\SearchEngine\Solr\Http\CurlSolrHttpClient;
+use LizardsAndPumpkins\DataPool\SearchEngine\Solr\SolrSearchEngine;
 use LizardsAndPumpkins\DataPool\UrlKeyStore\FileUrlKeyStore;
 use LizardsAndPumpkins\Import\FileStorage\FileStorageReader;
 use LizardsAndPumpkins\Import\FileStorage\FileStorageWriter;
@@ -190,13 +193,13 @@ class DemoProjectFactory implements Factory, MessageQueueFactory, FactoryWithCal
     private function getCommonFacetFilterRequestFields() : array
     {
         return [
-            new FacetFilterRequestSimpleField(AttributeCode::fromString('gender')),
-            new FacetFilterRequestSimpleField(AttributeCode::fromString('product_group')),
-            new FacetFilterRequestSimpleField(AttributeCode::fromString('style')),
-            new FacetFilterRequestSimpleField(AttributeCode::fromString('brand')),
-            new FacetFilterRequestSimpleField(AttributeCode::fromString('series')),
-            new FacetFilterRequestSimpleField(AttributeCode::fromString('size')),
-            new FacetFilterRequestSimpleField(AttributeCode::fromString('color')),
+//            new FacetFilterRequestSimpleField(AttributeCode::fromString('gender')),
+//            new FacetFilterRequestSimpleField(AttributeCode::fromString('product_group')),
+//            new FacetFilterRequestSimpleField(AttributeCode::fromString('style')),
+//            new FacetFilterRequestSimpleField(AttributeCode::fromString('brand')),
+//            new FacetFilterRequestSimpleField(AttributeCode::fromString('series')),
+//            new FacetFilterRequestSimpleField(AttributeCode::fromString('size')),
+//            new FacetFilterRequestSimpleField(AttributeCode::fromString('color')),
         ];
     }
 
@@ -326,14 +329,13 @@ class DemoProjectFactory implements Factory, MessageQueueFactory, FactoryWithCal
 
     public function createSearchEngine() : SearchEngine
     {
-        $storageBasePath = $this->getMasterFactory()->getFileStorageBasePathConfig();
-        $storagePath = $storageBasePath . '/search-engine';
-        $this->createDirectoryIfNotExists($storagePath);
-        
-        return FileSearchEngine::create(
-            $storagePath,
-            $this->getMasterFactory()->getSearchableAttributeCodes(),
-            $this->getMasterFactory()->createSearchCriteriaBuilder(),
+        /** @var ConfigReader $configReader */
+        $configReader = $this->getMasterFactory()->createConfigReader();
+        $solrConnectionPath = $configReader->get('solr_connection_path');
+
+        return new SolrSearchEngine(
+            new CurlSolrHttpClient($solrConnectionPath),
+            new SearchCriterionAnything(),
             $this->getMasterFactory()->getFacetFieldTransformationRegistry()
         );
     }

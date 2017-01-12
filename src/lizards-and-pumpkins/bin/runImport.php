@@ -44,7 +44,7 @@ class RunImport extends BaseCliCommand
         $factory->register($implementationFactory);
         $factory->register(new UpdatingProductImportCommandFactory());
         $factory->register(new UpdatingProductListingImportCommandFactory());
-        //self::enableDebugLogging($factory, $commonFactory, $implementationFactory);
+        self::enableDebugLogging($factory, $commonFactory, $implementationFactory);
 
         return new self($factory, new CLImate());
     }

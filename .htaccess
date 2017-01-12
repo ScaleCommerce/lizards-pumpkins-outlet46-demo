@@ -1,0 +1,7 @@
+setenv LP_BASE_URL_DE "http://thomas.sc-demo.de/"
+setenv LP_FILE_STORAGE_BASE_PATH "/var/www/thomas.sc-demo.de/file-storage"
+setenv LP_CATALOG_IMPORT_DIRECTORY "/var/www/thomas.sc-demo.de/share"
+setenv LP_MEDIA_BASE_PATH "/var/www/thomas.sc-demo.de/pub/media"
+setenv LP_BASE_URL_TO_WEBSITE_MAP "http://thomas.sc-demo.de/=de"
+setenv LP_LOG_FILE_PATH "/var/www/thomas.sc-demo.de/share/log/system.log"
+setenv LP_SOLR_CONNECTION_PATH "http://localhost:8983/solr/techproducts/"

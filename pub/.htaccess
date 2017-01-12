@@ -1,0 +1,18 @@
+RewriteCond %{REQUEST_URI} ^/media/.* [NC]
+#RewriteRule .* https://cdn1.outlet46.de/item/images/20603/1800x1600/ADIDAS-M17482-11.jpg [L]
+RewriteRule ^.*(cdn.*)$ https://$1 [L]
+#cdn1.outlet46.de/item/images/20603/1800x1600/ADIDAS-M17482-11.jpg [L]
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule .* index.php [L]
+</IfModule>
+
+
+
+#Request URL:http://thomas.sc-demo.de/media/product/large/https%3A//cdn1.outlet46.de/item/images/20603/1800x1600/ADIDAS-M17482-11.jpg
+
