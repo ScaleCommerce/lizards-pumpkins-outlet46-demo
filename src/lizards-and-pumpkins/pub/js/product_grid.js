@@ -37,7 +37,7 @@ define(['product'], function (Product) {
 
     function createGridItem(productSourceData) {
         var product = new Product(productSourceData),
-            mainImage = product.getMainImage(),
+            mainImage = product.getMainImage().replace(/1800x1600/i, '250x250'),
             productLi = document.createElement('LI'),
             container = document.createElement('DIV'),
             title = document.createElement('A'),
