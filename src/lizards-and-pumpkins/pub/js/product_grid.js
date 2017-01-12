@@ -41,7 +41,7 @@ define(['product'], function (Product) {
             productLi = document.createElement('LI'),
             container = document.createElement('DIV'),
             title = document.createElement('A'),
-            productImage = createProductImage(mainImage['url'], mainImage['label']);
+            productImage = createProductImage(mainImage,'');
         productLi.className = 'col-lg-3 center itemBox tileView onHover';
 
         title.textContent = product.getAttributeValue('name');
