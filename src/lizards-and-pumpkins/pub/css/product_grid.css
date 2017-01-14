@@ -1,10 +1,10 @@
 .products-grid { padding: 0; list-style: none; margin-right: 15px }
-.products-grid li { float: left; width: 25%; padding-bottom: 50px; text-align: center; height: 360px; position: relative }
+.products-grid li { float: left; width: 25%; padding-bottom: 50px; height: 360px; position: relative }
 .products-grid li a { position: relative; display: block; padding: 10px; margin-left: 15px; background: #ffffff }
-
-.products-grid h2 { margin: 10px 0 5px; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; font-weight: normal }
+.products-grid .name { font-size: 14px; max-height: 72px; min-height: 72px; overflow: hidden }
 
 /* Prices */
+.products-grid .regular-price { font-size: 18px; color: #6f9f31 }
 .products-grid .old-price, .products-grid .special-price { display: inline-block }
 .products-grid .old-price { margin-right: 10px; text-decoration: line-through }
 .products-grid .special-price { color: #ff3e3e }

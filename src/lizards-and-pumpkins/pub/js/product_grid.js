@@ -39,14 +39,20 @@ define(['product'], function (Product) {
         var product = new Product(productSourceData),
             mainImage = product.getMainImage().replace(/1800x1600/i, '250x250'),
             productLi = document.createElement('LI'),
-            container = document.createElement('DIV'),
-            title = document.createElement('A'),
+            container = document.createElement('A'),
+            manufacturer = document.createElement('STRONG'),
+            title = document.createElement('DIV'),
             productImage = createProductImage(mainImage,'');
 
+        manufacturer.textContent = product.getAttributeValue('manufacturer');
+
         title.textContent = product.getAttributeValue('name');
-        title.setAttribute('href',baseUrl + product.getAttributeValue('url_key'));
+        title.className = 'name';
+
+        container.href = baseUrl + product.getAttributeValue('url_key');
 
         container.appendChild(productImage);
+        container.appendChild(manufacturer);
         container.appendChild(title);
         createAndAppendPricesBlock(product, container);
 
