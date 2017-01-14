@@ -42,7 +42,6 @@ define(['product'], function (Product) {
             container = document.createElement('DIV'),
             title = document.createElement('A'),
             productImage = createProductImage(mainImage,'');
-        productLi.className = 'col-lg-3 center itemBox tileView onHover';
 
         title.textContent = product.getAttributeValue('name');
         title.setAttribute('href',baseUrl + product.getAttributeValue('url_key'));
