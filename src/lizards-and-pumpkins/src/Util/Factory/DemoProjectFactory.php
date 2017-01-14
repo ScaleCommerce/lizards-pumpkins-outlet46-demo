@@ -111,7 +111,7 @@ class DemoProjectFactory implements Factory, MessageQueueFactory, FactoryWithCal
     public function getSearchableAttributeCodes() : array
     {
         return [
-            'brand',
+            'manufacturer',
             'description',
             'gender',
             'mpn',
@@ -164,7 +164,7 @@ class DemoProjectFactory implements Factory, MessageQueueFactory, FactoryWithCal
     public function getProductListingFacetFilterRequestFields(Context $context) : array
     {
         $priceField = $this->createPriceRangeFacetFilterField($context);
-        return $this->injectFacetFieldAfter($priceField, 'brand', $this->getCommonFacetFilterRequestFields());
+        return $this->injectFacetFieldAfter($priceField, 'manufacturer', $this->getCommonFacetFilterRequestFields());
     }
 
     /**
@@ -174,7 +174,7 @@ class DemoProjectFactory implements Factory, MessageQueueFactory, FactoryWithCal
     public function getProductSearchFacetFilterRequestFields(Context $context) : array
     {
         $priceField = $this->createPriceRangeFacetFilterField($context);
-        return $this->injectFacetFieldAfter($priceField, 'brand', $this->getCommonFacetFilterRequestFields());
+        return $this->injectFacetFieldAfter($priceField, 'manufacturer', $this->getCommonFacetFilterRequestFields());
     }
 
     /**
@@ -196,7 +196,7 @@ class DemoProjectFactory implements Factory, MessageQueueFactory, FactoryWithCal
 //            new FacetFilterRequestSimpleField(AttributeCode::fromString('gender')),
 //            new FacetFilterRequestSimpleField(AttributeCode::fromString('product_group')),
 //            new FacetFilterRequestSimpleField(AttributeCode::fromString('style')),
-//            new FacetFilterRequestSimpleField(AttributeCode::fromString('brand')),
+            new FacetFilterRequestSimpleField(AttributeCode::fromString('manufacturer')),
 //            new FacetFilterRequestSimpleField(AttributeCode::fromString('series')),
 //            new FacetFilterRequestSimpleField(AttributeCode::fromString('size')),
 //            new FacetFilterRequestSimpleField(AttributeCode::fromString('color')),

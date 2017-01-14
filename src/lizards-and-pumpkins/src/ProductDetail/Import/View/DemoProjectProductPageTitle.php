@@ -14,7 +14,7 @@ class DemoProjectProductPageTitle
 
     public function forProductView(ProductView $productView) : string
     {
-        $base = $productView->getFirstValueOfAttribute('brand') . ' ' . $productView->getFirstValueOfAttribute('name');
+        $base = $productView->getFirstValueOfAttribute('name');
 
         $title = array_reduce(['product_group', 'style'], function ($carry, $attributeCode) use ($productView) {
             $part = $productView->getFirstValueOfAttribute($attributeCode);
