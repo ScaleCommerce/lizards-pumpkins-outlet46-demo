@@ -27,22 +27,10 @@ require(
             return emptyListingMessage;
         }
 
-        function createProductsPerPageElement(numberOfProductsPerPage) {
-            if (true === numberOfProductsPerPage['selected']) {
-                return document.createTextNode(numberOfProductsPerPage['number']);
-            }
-
-            var link = document.createElement('A'),
-                newUrl = url.updateQueryParameter('limit', numberOfProductsPerPage['number']);
-
-            link.textContent = numberOfProductsPerPage['number'];
-            link.href = url.removeQueryParameterFromUrl(newUrl, pagination.getPaginationQueryParameterName());
-
-            return link;
-        }
-
         function createSortingSelect() {
             var sortingSelect = document.createElement('SELECT');
+
+            sortingSelect.className = 'form-control';
 
             if (typeof window.availableSortOrders !== 'object' || typeof window.selectedSortOrder !== 'object') {
                 return sortingSelect;
@@ -78,7 +66,6 @@ require(
         function createToolbar() {
             var toolbar = document.createElement('DIV');
             toolbar.className = 'toolbar';
-            //toolbar.appendChild(createTotalProductsNumberBlock());
             toolbar.appendChild(createSortingBlock());
             toolbar.appendChild(createProductsPerPageBlock());
             toolbar.appendChild(pagination.renderPagination(totalNumberOfResults, productsPerPage));
@@ -86,17 +73,7 @@ require(
             return toolbar;
         }
 
-        function createTotalProductsNumberBlock() {
-            var amount = document.createElement('P');
-            amount.className = 'amount';
-            amount.textContent = translate('%s Item(s)', totalNumberOfResults);
-
-            return amount;
-        }
-
         function createSortingBlock() {
-            var select = createSortingSelect();
-
             var sortByLabel = document.createElement('LABEL');
             sortByLabel.textContent = translate('Sort By');
 
@@ -104,28 +81,53 @@ require(
             sortBy.className = 'sort-by';
 
             sortBy.appendChild(sortByLabel);
-            sortBy.appendChild(select);
+            sortBy.appendChild(createSortingSelect());
 
             return sortBy;
         }
 
         function createProductsPerPageBlock() {
-            var productPerPage = document.createElement('DIV'),
-                productPerPageLabel = document.createElement('LABEL');
-            productPerPage.className = 'limiter';
+            var productPerPageLabel = document.createElement('LABEL');
             productPerPageLabel.textContent = translate('Items') + ': ';
+
+            var productPerPage = document.createElement('DIV');
+            productPerPage.className = 'limiter';
+
             productPerPage.appendChild(productPerPageLabel);
-
-            window.productsPerPage.map(function (numberOfProductsPerPage, index) {
-                productPerPage.appendChild(createProductsPerPageElement(numberOfProductsPerPage));
-
-                if (index < productsPerPage.length - 1) {
-                    var separator = document.createTextNode(' | ');
-                    productPerPage.appendChild(separator);
-                }
-            });
+            productPerPage.appendChild(createProductsPerPageSelect());
 
             return productPerPage;
+        }
+
+        function createProductsPerPageSelect() {
+            var select = document.createElement('SELECT');
+
+            select.className = 'form-control';
+
+            if (typeof window.productsPerPage !== 'object') {
+                return select;
+            }
+
+            select.addEventListener('change', function () {
+                document.location.href = this.value
+            }, true);
+
+            window.productsPerPage.map(function (numberOfProductsPerPage) {
+                select.appendChild(createProductsPerPageOption(numberOfProductsPerPage));
+            });
+
+            return select;
+        }
+
+        function createProductsPerPageOption(numberOfProductsPerPage) {
+            var option = document.createElement('OPTION'),
+                newUrl = url.updateQueryParameter('limit', numberOfProductsPerPage['number']);
+
+            option.textContent = numberOfProductsPerPage['number'];
+            option.value = url.removeQueryParameterFromUrl(newUrl, pagination.getPaginationQueryParameterName());
+            option.selected = numberOfProductsPerPage['selected'];
+
+            return option;
         }
     }
 );

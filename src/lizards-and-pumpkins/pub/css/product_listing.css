@@ -1,2 +1,18 @@
-@import "joscha.css";
+@import "common.css";
 @import "product_grid.css";
+
+.toolbar { border-top: #ddd 1px solid; border-bottom: #ddd 1px solid; padding: 20px 0; text-transform: uppercase; font-size: 15px }
+.toolbar .form-control { display: inline-block; width: auto; margin: 0 10px }
+
+.limiter, .sort-by { float: left }
+
+/* Pagination */
+#pagination { float: right }
+#pagination ol { margin-bottom: 0 }
+#pagination li { display: inline-block }
+#pagination a, #pagination .current { padding: 4px 5px; display: inline-block; color: #000000 }
+#pagination .spacing { padding: 4px 5px }
+#pagination .current { color: #70a301 }
+
+/* Clearer */
+.toolbar:after { content: ""; display: block; height: 0; clear: both; visibility: hidden }
