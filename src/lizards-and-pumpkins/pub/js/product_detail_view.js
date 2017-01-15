@@ -48,7 +48,7 @@ require(
             currentImageLink.appendChild(currentImage);
 
             var gallery = document.createElement('DIV');
-            gallery.className = 'product-image col span_5';
+            gallery.className = 'product-image';
             gallery.appendChild(currentImageLink);
             gallery.appendChild(createThumbnails());
 
@@ -124,7 +124,7 @@ require(
             var essentials = document.createElement('DIV'),
                 shortDescription = document.createElement('DIV');
 
-            essentials.className = 'product-shop col span_7';
+            essentials.className = 'product-shop';
 
 
             shortDescription.className = 'short-description';
