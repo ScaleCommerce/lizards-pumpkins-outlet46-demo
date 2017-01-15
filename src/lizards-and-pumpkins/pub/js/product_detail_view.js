@@ -29,8 +29,6 @@ require(
             container.appendChild(createTitle());
             container.appendChild(createGallery());
             container.appendChild(createEssentials());
-            container.appendChild(createDescription());
-            container.appendChild(createAdditionalInformation());
 
             document.getElementById('content').appendChild(container);
 
@@ -137,6 +135,7 @@ require(
             essentials.appendChild(createVatInfo());
             essentials.appendChild(createControls());
             essentials.appendChild(toBasketWrapper());
+            essentials.appendChild(createDescription());
 
             return essentials;
         }
@@ -185,55 +184,12 @@ require(
         }
 
         function createDescription() {
-            var container = document.createElement('DIV'),
-                title = document.createElement('H5');
+            var container = document.createElement('DIV');
 
-            container.className = 'box-description';
-            title.textContent = translate('Details');
-
-            container.appendChild(title);
+            container.className = 'description-top';
             container.innerHTML += product.getAttributeValue('description');
-            //container.appendChild(document.createTextNode(product.getAttributeValue('description')));
 
             return container;
-        }
-
-        function createAdditionalInformation() {
-            var container = document.createElement('DIV'),
-                title = document.createElement('H5'),
-                table = document.createElement('TABLE');
-
-            title.textContent = translate('Additional information');
-
-            ['occasion', 'apparel_type', 'gender'].map(function (attributeCode) {
-                if (! product.hasAttributeValue(attributeCode)) {
-                    return;
-                }
-
-                var attributeValue = product.getAttributeValue(attributeCode);
-                if (attributeValue !== '') {
-                    table.appendChild(createAdditionalInformationTableRow(attributeCode, attributeValue));
-                }
-            });
-
-            container.appendChild(title);
-            container.appendChild(table);
-            container.className = 'box-additional';
-
-            return container;
-        }
-
-        function createAdditionalInformationTableRow(attributeCode, attributeValue) {
-            var tr = document.createElement('TR'),
-                tdKey = document.createElement('TD'),
-                tdValue = document.createElement('TD');
-
-            tdKey.textContent = translate(attributeCode);
-            tdValue.textContent = attributeValue;
-
-            tr.appendChild(tdKey);
-            tr.appendChild(tdValue);
-            return tr;
         }
 
         function deleteAllSelectBoxesAfter(previousBoxAttribute) {

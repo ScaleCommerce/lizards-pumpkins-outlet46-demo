@@ -4,8 +4,7 @@
 
 .product-view { max-width: 1600px; margin: 0 auto; padding: 0 50px }
 .product-view h1 { border-bottom: solid 1px #ededed; padding-bottom: 15px; margin: 24px 0 10px }
-.product-shop .short-description { margin: 0 0 50px 10px }
-.product-image, .product-essential { width: 50%; float: left }
+.product-image, .product-shop { width: 50%; float: left }
 
 /* Images */
 .zoom-flyout { left: 490px; width: 594px; height: 490px }
@@ -25,8 +24,9 @@
 .old-price { margin-left: 10px; text-decoration: line-through }
 .special-price { color: #ff3e3e }
 
-.box-description { clear: both; padding-top: 20px }
-.box-description h5, .box-additional h5 { margin: 30px 0 20px; font-size: 20px; font-weight: normal }
+.description-top h2 strong { font-weight: normal }
+
+.box-additional { clear: both }
 .box-additional table { margin-bottom: 60px }
 .box-additional td { padding: 3px }
 
