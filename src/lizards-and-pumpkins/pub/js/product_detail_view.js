@@ -80,7 +80,7 @@ require(
 
                     currentImage.src = this.getAttribute('data-image');
                     currentImage.parentNode.href = this.getAttribute('href');
-                    initializeZoom();
+                    initializeZoom(currentImage.parentNode);
                 }, true);
 
                 thumbnailLink.appendChild(thumbnailImage);
